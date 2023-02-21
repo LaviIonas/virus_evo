@@ -24,4 +24,4 @@ while gen < 10:
 
     gen += 1 # Next Generation
 
-print(virus_pop)
+    print(virus_pop)
