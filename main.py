@@ -10,7 +10,7 @@ virus_length = 6 # Size of the Virus
 virus_pop = [] # Set of all Virus'
 
 # MUTATION INDEX
-
+initialization.mutation_index(virus_length)
 # Evo Alg
 
 gen = 0
