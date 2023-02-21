@@ -1,5 +1,7 @@
+# import
 import initialization
 
+# 
 virus_pop_size = 10
 virus_length = 6
 
