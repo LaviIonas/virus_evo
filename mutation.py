@@ -8,5 +8,4 @@ def virus_mutation(individual, mut_rate):
         mutate_value = str(round(mutate_value, 2))
         if new_individual[i] == 1:
             new_individual[i] = float(mutate_value)
-
     return new_individual
