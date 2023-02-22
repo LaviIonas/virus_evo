@@ -20,13 +20,12 @@ gen_max = 10
 # INITIALIZE the virus population
 
 virus_pop = initialization.initialize_virus_population()
-mutation_rate = [0.4, 0.6]
 while gen < 10:
     new_virus_pop = [] # population of the new virus
 
     # MUTATE the virus
     for virus in virus_pop:
-        new_virus_pop.append(mutation.virus_mutation(virus, mutation_rate))
+        new_virus_pop.append(mutation.virus_mutation(virus))
 
     gen += 1 # Next Generation
 
