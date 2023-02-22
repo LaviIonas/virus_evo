@@ -19,7 +19,7 @@ gen_max = 10
 
 # INITIALIZE the virus population
 
-virus_pop = initialization.initialize_virus_population(virus_length=6, virus_pop_size=10)
+virus_pop = initialization.initialize_virus_population()
 mutation_rate = [0.4, 0.6]
 while gen < 10:
     new_virus_pop = [] # population of the new virus
@@ -31,4 +31,3 @@ while gen < 10:
     gen += 1 # Next Generation
 
 print(new_virus_pop)
-

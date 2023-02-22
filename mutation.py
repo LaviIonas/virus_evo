@@ -1,5 +1,6 @@
 # import
 import random
+
 # function
 def virus_mutation(individual, mut_rate):
     new_individual = random.choices(population=[0, 1], weights=mut_rate, k=len(individual))

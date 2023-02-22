@@ -4,8 +4,8 @@ import global_var as var
 # functions
 
 # INITIALIZE the starting virus population
-def initialize_virus_population (virus_length, virus_pop_size):
-    return np.zeros((virus_length, virus_pop_size))
+def initialize_virus_population ():
+    return np.zeros((var.virus_length, var.virus_pop_size))
 
 # INITIALIZE the mutation index for virus genome of length n
 def mutation_index ():
