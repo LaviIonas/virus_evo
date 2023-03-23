@@ -6,6 +6,15 @@ import global_var as var
 
 # INITIALIZE the starting virus population
 def initialize_virus_population ():
+    
+
+# INITIALIZE the mutation index for virus genome of length n
+def mutation_index ():
+    # var.virus_length
+    mut_index = []
+    return mut_index
+
+def initialize_virus_tree ():
     pop = []
 
     for i in range(var.virus_pop_size):
@@ -18,10 +27,3 @@ def initialize_virus_population ():
             individual.create_node([0, 0, 0, 0, 0, 0], nodeID, parent=parent_nodeID)
         pop.append(individual)
     return pop
-
-
-# INITIALIZE the mutation index for virus genome of length n
-def mutation_index ():
-    # var.virus_length
-    mut_index = []
-    return mut_index
