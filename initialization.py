@@ -21,9 +21,9 @@ def initialize_virus_tree ():
         individual = Tree()
         nodeID = 1
         parent_nodeID = nodeID
-        individual.create_node([0, 0, 0, 0, 0, 0], nodeID) # root node
+        individual.create_node([0] * var.virus_length, nodeID) # root node
         for j in range(var.virus_tree_size):
             nodeID += 1
-            individual.create_node([0, 0, 0, 0, 0, 0], nodeID, parent=parent_nodeID)
+            individual.create_node([0] * var.virus_length, nodeID, parent=parent_nodeID)
         pop.append(individual)
     return pop
