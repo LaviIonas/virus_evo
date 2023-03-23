@@ -5,14 +5,31 @@ import global_var as var
 # functions
 
 # INITIALIZE the starting virus population
-def initialize_virus_population ():
-    
+def initialize_virus ():
+    virus = []
+    for i in range(1, var.virus_length):
+        virus.append([0]*var.virus_length)
+
+    LP = init_LP()
+    print(LP)
+    print(new_virus)
+    virus.append(LP)
+    print(new_virus)
 
 # INITIALIZE the mutation index for virus genome of length n
 def mutation_index ():
     # var.virus_length
     mut_index = []
     return mut_index
+
+def init_LP():
+    LP = []
+    numLP = random.randint(1, 3)
+    for i in range(numLP):
+        lethal = random.randint(0, 7)
+        if lethal not in LP:
+            LP.append(lethal)
+    return LP
 
 def initialize_virus_tree ():
     pop = []
