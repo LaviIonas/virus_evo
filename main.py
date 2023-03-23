@@ -20,7 +20,8 @@ gen_max = 10
 
 # INITIALIZE the virus population
 
-virus_pop = initialization.initialize_virus()
+virus_pop = initialization.initialize_virus_population()
+print(virus_pop)
 # for i in range(len(virus_pop)):
 #     for j in range(len(virus_pop[i])):
 #         virus_pop[i][j + 1].tag = mutation.virus_mutation(virus_pop[i][j + 1].tag)
