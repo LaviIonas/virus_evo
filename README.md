@@ -8,7 +8,7 @@ Var : [ [00000000]x8 , [Lethal Point] , [Properties] ]
 
 Vac : [ 00000000 ]
 
-Lethal Points: Choose rand x = (1-3), x out of 8 nodes will be lethal
+Lethal Points: Choose x = randInt ( 1 , 3 ), Choose y = x ( randInt ( 0 , 7 ) ) to be lethal points
 
 
 ### *Functions TODO :*
