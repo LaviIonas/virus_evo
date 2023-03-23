@@ -2,6 +2,8 @@
 import numpy as np
 from treelib import Tree, Node
 import global_var as var
+import random
+
 # functions
 
 # INITIALIZE the starting virus population
