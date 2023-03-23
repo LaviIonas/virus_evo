@@ -1,37 +1,54 @@
 # **virus_evo**
 
-### *Current Reps :*
+### *Current Representations :*
+
+```
+INITIALIZATION
 
 Virus:
+% initial structure of the virus and vaccine
 
-Var : [ [00000000]x8 , [Lethal Point] , [Properties] ]
-
+Var : [ [00000000]x8 , [Lethal Point : index] , [Properties] ]
 Vac : [ 00000000 ]
 
-Lethal Points: Choose x = randInt ( 1 , 3 ), Choose y = x ( randInt ( 0 , 7 ) ) to be lethal points
+Lethal Points:
+% initialize the lethal points of the virus
 
+Choose x = randInt ( 1 , 3 )
+Choose x randInt ( 0 , 7 ) to be index non repeating
+Append indexes to Var : Lethal Point Array
+
+Threatened:
+% indicates whether or not a virus is threatened by vaccine
+
+Append 0 to Var : Properties Array
+```
+
+```
+
+```
 
 ### *Functions TODO :*
 The following are functions that are to be done:
 ```
 Virus:
-1. Translate Tree <-> Translate String
-2. Initialize Virus String
-3. Alter Lethal Points of Tree / String
-4. Alter Genetic Code of Virus Nodes
-5. Virus Threatened Property
-6. Virus Mutate Lethal Points
-7.
+- [] Translate Tree <-> Translate String
+- [] Initialize Virus String
+- [] Alter Lethal Points of Tree / String
+- [] Alter Genetic Code of Virus Nodes
+- [] Virus Threatened Property
+- [] Virus Mutate Lethal Points
+- []
 
 Vaccine:
-1. Initialize String
-2. Alter Vaccine Genetic Code
-3. Vaccine Fitness  
-4.
+- [] Initialize String
+- [] Alter Vaccine Genetic Code
+- [] Vaccine Fitness  
+- [] Collect all Lethal Nodes
 ```
 ## Timeline
 
-### Mar 23 Translate Tree To String
+### Mar 23 Virus Rep, Lethal Points
 ### Mar 24
 ### Mar 25
 ### Mar 26
