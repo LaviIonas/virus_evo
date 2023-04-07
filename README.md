@@ -109,8 +109,8 @@ Vaccine:
 
 ```
 Tasks:
-Lavi    : init vacine (x) / threat / avg LP string (x)
-Cyril   : mutation / set + get helper for LP
+Lavi    : init vacine (x) / threat (x)/ avg LP string (x)
+Cyril   : mutation / set + get helper for LP (x)
 Priyank : init parent selection
 ```
 
