@@ -17,7 +17,7 @@ def initialize_virus_population ():
 # INITIALIZE A Virus
 def initialize_virus ():
     virus = []
-    for i in range(1, var.virus_length):
+    for i in range(0, var.virus_length):
         virus.append([0]*var.virus_length)
 
     # Append List of Lethal Points
@@ -29,6 +29,14 @@ def initialize_virus ():
 
     return virus
 
+# INITIALIZE A Vaccine
+def initialize_vaccine ():
+    vaccine = []
+    for i in range(0, var.virus_length):
+        vaccine.append(0)
+    return vaccine
+
+#INITIALIZE lethal points of a virus
 def init_LP ():
     LP = []
     numLP = random.randint(1, 3)

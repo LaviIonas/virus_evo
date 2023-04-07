@@ -8,8 +8,8 @@ INITIALIZATION
 Virus:
 % initial structure of the virus and vaccine
 
-Var : [ [00000000]x8 , [Lethal Point : index] , [Properties] ]
-Vac : [ 00000000 ]
+Var : [ [0,0,0,0,0,0,0,0]x8 , [Lethal Point : index] , [Properties] ]
+Vac : [ 0,0,0,0,0,0,0,0 ]
 
 Lethal Points:
 % initialize the lethal points of the virus
@@ -20,21 +20,49 @@ Append indexes to Var : Lethal Point Array
 
 Threatened:
 % indicates whether or not a virus is threatened by vaccine
-
 Append 0 to Var : Properties Array
 
-VACCINE
-init
 ```
 
 ```
 VIRUS
-    set / get virus threat status
+% get virus threat binary
+def get_virus_threat (virus):
+    return value of virus threat parameter
+
+% set virus threat binary
+def set_virus_threat (virus, value):
+    set the virus threat parameter to value
+
+% get virus lp as an array
+def get_virus_lp (virus):
+    for each value in lp array:
+        return array associated with lp index
+
+% threaten a virus
+def virus_threaten (virus, vaccine):
+    for each lethal point in a virus:
+        check if any match the VACCINE
+
+    if lp match vaccine:
+        if the virus was already threated:
+            kill the virus
+        otherwise threaten the virus
+    otherwise remove / reset threat
+
+
 ```
 
 ```
 VACCINE
-    compute LP avg
+% determine ways to threaten a virus
+
+% method 1: avg of all LP array columns
+for each column in a virus LP array:
+    for each LP array in LP arrays:
+        determine the most common value in a column
+        append to avg array
+    return average
 ```
 
 ```
@@ -81,7 +109,7 @@ Vaccine:
 
 ```
 Tasks:
-Lavi    : init vacine / threat / avg LP string
+Lavi    : init vacine (x) / threat / avg LP string (x)
 Cyril   : mutation / set + get helper for LP
 Priyank : init parent selection
 ```
