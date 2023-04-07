@@ -22,10 +22,41 @@ Threatened:
 % indicates whether or not a virus is threatened by vaccine
 
 Append 0 to Var : Properties Array
+
+VACCINE
+init
 ```
 
 ```
+VIRUS
+    set / get virus threat status
+```
 
+```
+VACCINE
+    compute LP avg
+```
+
+```
+MUTATION
+*implementation*
+
+```
+
+```
+SELECTION
+
+Parent Selection
+*implementation*
+```
+
+```
+FUNCTIONS
+
+set LP:
+    change the set of LP of a virus
+get LP:
+    return set of LP (their binary stings)
 ```
 
 ### *Functions TODO :*
@@ -47,6 +78,13 @@ Vaccine:
 - [] Collect all Lethal Nodes
 ```
 ## Timeline
+
+```
+Tasks:
+Lavi    : init vacine / threat / avg LP string
+Cyril   : mutation / set + get helper for LP
+Priyank : init parent selection
+```
 
 ### Mar 23 Virus Rep, Lethal Points
 ### Mar 24
