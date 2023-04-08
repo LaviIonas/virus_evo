@@ -43,21 +43,28 @@ def get_virus_lp(virus):
     return lp_array
 
 # Determine Virus Threat Based on Vaccine
-def virus_threaten(virus, vaccine):
+def virus_threat_check(virus):
     virus_lp = get_virus_lp(virus)
     threat = False
     for lp in virus_lp:
-        if lp == vaccine:
+        if lp == var.vaccine:
             threat = True
 
-    print("threat: ", threat)
     if threat:
         if get_virus_threat(virus):
             # Virus is already threathed from a previous iteration
-            print("VIRUS KILLED")
+            virus_null(virus)
         else:
             # threaten the virus
             set_virus_threat(virus, 1)
     else:
         # reset threat values
         set_virus_threat(virus, 0)
+
+# remove a selected virus from the population
+def virus_null(virus):
+    virus = []
+
+# Set the array value of the vaccine
+def set_vaccine(vaccine):
+    var.vaccine = vaccine

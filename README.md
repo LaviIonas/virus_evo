@@ -8,8 +8,8 @@ INITIALIZATION
 Virus:
 % initial structure of the virus and vaccine
 
-Var : [ [0,0,0,0,0,0,0,0]x8 , [Lethal Point : index] , [Properties] ]
-Vac : [ 0,0,0,0,0,0,0,0 ]
+Vir : [ [0,0,0,0,0,0,0,0]x8 , [Lethal Point : index] , [Properties] ]
+Vac : [ 0,0,0,0,0,0,0,0 ] (global var.vaccine)
 
 Lethal Points:
 % initialize the lethal points of the virus
@@ -40,7 +40,7 @@ def get_virus_lp (virus):
         return array associated with lp index
 
 % threaten a virus
-def virus_threaten (virus, vaccine):
+def virus_threat_check (virus):
     for each lethal point in a virus:
         check if any match the VACCINE
 
@@ -50,19 +50,31 @@ def virus_threaten (virus, vaccine):
         otherwise threaten the virus
     otherwise remove / reset threat
 
+% set a virus to empty set
+def virus_null(virus):
+    virus = []
 
+% clean a virus_pop of all empty sets
+def virus_pop_clean (virus_pop):
+    
 ```
 
 ```
 VACCINE
 % determine ways to threaten a virus
 
+% set vaccine value
+def set_vaccine (vaccine) :
+    set the global var vaccine to be the new vaccine
+
 % method 1: avg of all LP array columns
-for each column in a virus LP array:
-    for each LP array in LP arrays:
-        determine the most common value in a column
-        append to avg array
-    return average
+def avg_lp_virus_string (lethal points)
+    for each column in a virus LP array:
+        for each LP array in LP arrays:
+            determine the most common value in a column
+            append to avg array
+        return average
+
 ```
 
 ```
@@ -95,7 +107,7 @@ Virus:
 - [] Initialize Virus String
 - [] Alter Lethal Points of Tree / String
 - [] Alter Genetic Code of Virus Nodes
-- [] Virus Threatened Property
+- [x] Virus Threatened Property
 - [] Virus Mutate Lethal Points
 - []
 

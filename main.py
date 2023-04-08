@@ -22,9 +22,11 @@ gen_max = 10
 # INITIALIZE the virus population
 
 virus_pop = initialization.initialize_virus_population()
-vaccine = initialization.initialize_vaccine()
-
-
+var.vaccine = initialization.initialize_vaccine()
+print(var.vaccine)
+help.set_virus_threat(virus_pop[1], 1)
+help.virus_threat_check(virus_pop[1])
+print(virus_pop)
 
 
 # # THREAT VIRUS TEST
