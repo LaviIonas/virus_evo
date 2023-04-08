@@ -28,6 +28,7 @@ var.vaccine = initialization.initialize_vaccine()
 
 # GENERATIONAL LOOP
 
+
 # for i in range(len(virus_pop)):
 #     for j in range(len(virus_pop[i])):
 #         virus_pop[i][j + 1].tag = mutation.virus_mutation(virus_pop[i][j + 1].tag)
