@@ -19,54 +19,14 @@ virus_rep_rate = []  # Set of all Reproduction Rates of each Virus
 gen = 0
 gen_max = 10
 
-# INITIALIZE the virus population
-
+# INITIALIZE
 virus_pop = initialization.initialize_virus_population()
 var.vaccine = initialization.initialize_vaccine()
-print(var.vaccine)
-help.set_virus_threat(virus_pop[1], 1)
-help.virus_threat_check(virus_pop[1])
-print(virus_pop)
 
+# FITNESS
+# evaluate fitness of the populations
 
-# # THREAT VIRUS TEST
-# virus1 = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [2, 4, 3], [1]]
-# vaccine1 = [0,1,0,0,0,0,0,0]
-#
-# help.virus_threaten(virus1, vaccine1)
-# print(virus1)
-
-# # TEST get virus LP
-# array = help.get_virus_lp(virus_pop[0])
-# print(array)
-
-
-# #TEST GET SET OF VIRUS THREAT
-# print(virus_pop[0])
-# help.set_virus_threat(virus_pop[0], 1)
-# threat1 = help.get_virus_threat(virus_pop[0])
-# print(threat1)
-# help.set_virus_threat(virus_pop[0], 0)
-# threat1 = help.get_virus_threat(virus_pop[0])
-# print(threat1)
-
-# # TEST LETHAL POINT AVG
-# LP_list = []
-# for x in range(10):
-#     temp = []
-#     for i in range(8):
-#         temp.append(random.randint(0,1))
-#     LP_list.append(temp)
-#
-# for i in LP_list:
-#     print(i)
-# avg = help.avg_lp_virus_string(LP_list)
-# print("AVERAGE: ", avg)
-
-# # TEST VACCINE INIT
-# print(virus_pop)
-# print("VACCINE INIT : ", vaccine)
-
+# GENERATIONAL LOOP
 
 # for i in range(len(virus_pop)):
 #     for j in range(len(virus_pop[i])):

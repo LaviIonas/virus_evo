@@ -53,6 +53,7 @@ def virus_threat_check(virus):
     if threat:
         if get_virus_threat(virus):
             # Virus is already threathed from a previous iteration
+            print("yeet")
             virus_null(virus)
         else:
             # threaten the virus
@@ -63,7 +64,14 @@ def virus_threat_check(virus):
 
 # remove a selected virus from the population
 def virus_null(virus):
-    virus = []
+    return []
+
+# remove all empty lists from virus pop
+def virus_pop_clean(virus_pop):
+    for i in range(0, len(virus_pop)):
+        if virus_pop[i] == None:
+            print("gottem")
+
 
 # Set the array value of the vaccine
 def set_vaccine(vaccine):
