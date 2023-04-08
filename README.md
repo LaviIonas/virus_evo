@@ -56,7 +56,7 @@ def virus_null(virus):
 
 % clean a virus_pop of all empty sets
 def virus_pop_clean (virus_pop):
-    
+
 ```
 
 ```
@@ -93,10 +93,21 @@ Parent Selection
 ```
 FUNCTIONS
 
-set LP:
-    change the set of LP of a virus
-get LP:
-    return set of LP (their binary stings)
+
+```
+
+### EA ALG STRUCTURE
+```
+INITIALIZE
+virus_pop = initialization.initialize_virus_population()
+var.vaccine = initialization.initialize_vaccine()
+
+FITNESS
+fit_scores = fitness.temp(virus_pop)
+
+GENERATIONAL LOOP
+
+
 ```
 
 ### *Functions TODO :*
