@@ -36,9 +36,16 @@ while gen < gen_max:
     # PARENT
 
     # OFFSPRING
+        # RECOMBINATION
         # MUTATION
-        # CROSS OVER
+    for i in virus_pop:
+        mutation.virus_node_mutation(i)
+
     # FITNESS
+
+    gen += 1
+    print("Virus POP: ", virus_pop)
+    print("Generation: ", gen)
 
 # PRINT BEST SOLUTION
 
