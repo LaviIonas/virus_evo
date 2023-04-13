@@ -18,14 +18,23 @@ def initialize_virus_population ():
 def initialize_virus ():
     virus = []
     for i in range(0, var.virus_length):
-        virus.append([0]*var.virus_length)
+        virus.append([0]*var.virus_node_length)
 
     # Append List of Lethal Points
     LP = init_LP()
     virus.append(LP)
 
     # Append List of Properties
-    virus.append([0]) # Threatened Boolean
+    virus.append([])
+
+    # Append Threat Boolean to Properties
+    virus[var.virus_length+1].append(0)
+    # Append Fitness Score to Properties
+    virus[var.virus_length+1].append(0)
+    # Append Virality Score to Properties
+    virus[var.virus_length+1].append(0)
+
+    virus.append([0]*var.virus_length*var.virus_node_length)
 
     return virus
 

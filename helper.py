@@ -72,7 +72,13 @@ def virus_pop_clean(virus_pop):
         if virus_pop[i] == None:
             print("gottem")
 
-
 # Set the array value of the vaccine
 def set_vaccine(vaccine):
     var.vaccine = vaccine
+
+def update_virus_virality(virus):
+    mut_val = virus[var.virus_length+2]
+    sum = 0
+    for i in mut_val:
+        sum += i
+    virus[var.virus_length+1][2] = sum
