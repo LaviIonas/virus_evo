@@ -12,17 +12,16 @@ def calculate_virus_reproduction_rate (mut_val):
 # Find the average virus LP strings of LP array of virus pop
 def avg_lp_virus_string (lethal_points):
     average = []
-    for i in range(0, var.virus_length):
-        count_1 = 0
-        count_0 = 0
-        for j in lethal_points:
+    for i in range(0, var.virus_node_length):
+        a, b = 0, 0
+        for j in lethal_points[0]:
             if j[i]:
-                count_1 += 1
+                a += 1
             else:
-                count_0 += 1
-        if count_1 == count_0:
+                b += 1
+        if a == b:
             average.append(random.randint(0,1))
-        elif count_1 > count_0:
+        elif a > b:
             average.append(1)
         else:
             average.append(0)
@@ -45,7 +44,7 @@ def get_virus_lp(virus):
     return lp_array
 
 # Determine Virus Threat Based on Vaccine
-def virus_threat_check(virus):
+def virus_threat_check(virus_pop, virus):
     virus_lp = get_virus_lp(virus)
     threat = False
     for lp in virus_lp:
@@ -54,9 +53,14 @@ def virus_threat_check(virus):
 
     if threat:
         if get_virus_threat(virus):
+            current_id = str(virus[var.virus_length+1][3])
             # Virus is already threathed from a previous iteration
-            print("yeet")
-            virus_null(virus)
+            # Mark to Kill Virus
+            set_virus_threat(virus, -1)
+
+            # Tree Restructure
+            var.tree.link_past_node(current_id)
+
         else:
             # threaten the virus
             set_virus_threat(virus, 1)
@@ -64,15 +68,16 @@ def virus_threat_check(virus):
         # reset threat values
         set_virus_threat(virus, 0)
 
-# remove a selected virus from the population
-def virus_null(virus):
-    return []
-
 # remove all empty lists from virus pop
 def virus_pop_clean(virus_pop):
+    del_index = []
     for i in range(0, len(virus_pop)):
-        if virus_pop[i] == None:
-            print("gottem")
+        if virus_pop[i][var.virus_length+1][0] == -1:
+            print("killed ", virus_pop[i][var.virus_length+1][3])
+            del_index.append(i)
+
+    for index in sorted(del_index, reverse=True):
+        del virus_pop[index]
 
 def print_virus_readable(virus_pop):
     for i in range(0, len(virus_pop)):

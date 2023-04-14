@@ -75,10 +75,6 @@ def virus_threat_check (virus):
         otherwise threaten the virus
     otherwise remove / reset threat
 
-% kill a virus
-def virus_null(virus):
-    virus = []
-
 % clean a virus_pop of all empty sets
 def virus_pop_clean (virus_pop):
     TODO
