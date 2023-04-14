@@ -142,7 +142,7 @@ def natural_selection_mutation(virus):
             % new mutation, add new random mutation value from -1 to 1
             new mut array value at mut index is random value
 
-def natural_selection_virus_lp_muation(virus):
+def natural_selection_virus_lp_mutation(virus):
     TODO
 ```
 
@@ -173,12 +173,17 @@ GENERATIONAL LOOP for n
         call generate_virus_clones(virus_pop, gen)
             for each virus, if the virality value is above 0: make a clone
                 rename the clone as a child of virus
+        % natural_selection_virus_mutation function
         mutate the set of clones and append to virus population
         mutate the entire virus population
+
+        TODO : implement vaccine interaction and evolution
+        TODO : determine goal of system (termination)
 
 
 Parent Selection
 *implementation*
+    TODO
 ```
 
 ```
