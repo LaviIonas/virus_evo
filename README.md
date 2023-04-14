@@ -31,10 +31,13 @@ Vac : [ 0,0,0,0,0,0,0,0 ] (global var.vaccine)
             Append 0 to Var : Properties Array
 
         index 2:
-            Virility Value:
+            Virality Value:
             % store and update the virality of a virus based on mutations
             Append 0 to Var : Properties Array
-
+        index 3:
+            Virus Name:
+            % Root Virus' are named Rn
+            Upon Change, alter name of new virus (child/clone)
 
     Mutation Value :
     % store virus mutation values
@@ -46,7 +49,8 @@ Vac : [ 0,0,0,0,0,0,0,0 ] (global var.vaccine)
 ```
 
 ```
-VIRUS
+VIRUS FUNCTIONS
+
 % get virus threat binary
 def get_virus_threat (virus):
     return value of virus threat parameter
@@ -71,12 +75,26 @@ def virus_threat_check (virus):
         otherwise threaten the virus
     otherwise remove / reset threat
 
-% set a virus to empty set
+% kill a virus
 def virus_null(virus):
     virus = []
 
 % clean a virus_pop of all empty sets
 def virus_pop_clean (virus_pop):
+    TODO
+
+% print a virus for human readability
+def print_virus_readable(virus_pop):
+    print virus names and stats
+
+% update virus virality number after successful mutation
+def update_virus_virality(virus):
+    sum all the values of mut array
+    return sum
+
+% return avg virality of a virus pop in a generation
+def get_generation_virality_avg(virus_pop):
+    rturn avg virality / pop size
 
 ```
 
@@ -100,12 +118,64 @@ def avg_lp_virus_string (lethal points)
 
 ```
 MUTATION
-*implementation*
 
+NATURAL SELECTION IMPLEMENTATION
+% this is the mutation function when applied to the natural selection method
+Considering that virus do not have DNA proofing, they are capable of rapid and
+random mutations that can negatively, neutrally, or positively impact their
+ability to exist in nature.
+
+def natural_selection_mutation(virus):
+    if random more than mutation rate:
+        % select a random index in all the nodes
+        r1 = random.randint(0,var.virus_length-1)
+        r2 = random.randint(0,var.virus_length-1)
+
+        flip the value of that index from 0->1 or 1->0
+
+        mut_index = r1*var.virus_length + r2
+
+        if the value is 0
+            % mutation has be reversed
+            set mut array value at mut index to 0
+        if the value is 1
+            % new mutation, add new random mutation value from -1 to 1
+            new mut array value at mut index is random value
+
+def natural_selection_virus_lp_muation(virus):
+    TODO
 ```
 
 ```
 SELECTION
+
+BIOLOGICAL REPRESENTATION
+NATURAL SELECTION
+Considering that virus' in biology do not have parents nor children,
+It can be considered that virus' clone themselves using hosts.
+
+In this method, a virus duplicates itself if its virality value is above 0.
+That is, if the sum of all mutation values is above 0.
+A negative virality value would indicate that a virus is not capable of spreading
+
+In this instance, a clone is generated that can be identical or possibly mutated.
+A Virus with a negative virality value cannot clone itself and can only mutate in
+the attempt to improve its virality value.
+
+%----------------
+
+init virus and vaccine
+gen = 0
+gen_max = n
+
+GENERATIONAL LOOP for n
+    def natural_selection():
+        call generate_virus_clones(virus_pop, gen)
+            for each virus, if the virality value is above 0: make a clone
+                rename the clone as a child of virus
+        mutate the set of clones and append to virus population
+        mutate the entire virus population
+
 
 Parent Selection
 *implementation*
@@ -116,44 +186,19 @@ FUNCTIONS
 
 
 ```
+## Varying Methods for Virus / Vaccine EA
 
-### EA ALG STRUCTURE
+### Natural Selection (natural_selection.py)
+
 ```
-INITIALIZE
-virus_pop = initialization.initialize_virus_population()
-var.vaccine = initialization.initialize_vaccine()
-
-FITNESS
-fit_scores = fitness.temp(virus_pop)
-
-GENERATIONAL LOOP
-
+NATURAL SELECTION IMPLEMENTATION
+TODO : Define the entire Alg
 
 ```
 
-### *Functions TODO :*
-The following are functions that are to be done:
-```
-Virus:
-- [] Translate Tree <-> Translate String
-- [] Initialize Virus String
-- [] Alter Lethal Points of Tree / String
-- [] Alter Genetic Code of Virus Nodes
-- [x] Virus Threatened Property
-- [] Virus Mutate Lethal Points
-- []
-
-Vaccine:
-- [] Initialize String
-- [] Alter Vaccine Genetic Code
-- [] Vaccine Fitness  
-- [] Collect all Lethal Nodes
-```
-## Timeline
+### Parent Selection
 
 ```
-Tasks:
-Lavi    : init vacine (x) / threat (x)/ avg LP string (x)
-Cyril   : mutation / set + get helper for LP (x)
-Priyank : init parent selection
+PARENT SELECTION IMPLEMENTATION
+TODO : Define the entire Alg
 ```

@@ -40,8 +40,6 @@ def initialize_virus (id):
     # Mutation Value Array
     virus.append([0]*var.virus_length*var.virus_node_length)
 
-
-
     return virus
 
 # INITIALIZE A Vaccine

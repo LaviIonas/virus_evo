@@ -1,7 +1,8 @@
 # imports
 import global_var as var
 import random
-import treelib
+from treelib import Tree, Node
+
 # helper functions
 
 # calculates the reproduction rate of a virus
@@ -97,10 +98,9 @@ def update_virus_virality(virus):
 
 
 # TREE HELPER
-# def init_tree(virus_pop):
-#     tree = Tree()
-#
-#     for v in virus_pop:
-#         tree.create_node()
-#
-#     return tree
+def init_tree(virus_pop):
+    var.tree.create_node("ROOT", "root")
+
+    for v in virus_pop:
+        id = v[var.virus_length+1][3]
+        var.tree.create_node(id, id, parent="root")
