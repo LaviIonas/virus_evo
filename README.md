@@ -5,22 +5,43 @@
 ```
 INITIALIZATION
 
-Virus:
+Virus :
 % initial structure of the virus and vaccine
 
-Vir : [ [0,0,0,0,0,0,0,0]x8 , [Lethal Point : index] , [Properties] ]
+Vir : [ [0,0,0,0,0,0,0,0]x8 , [Lethal Point : index] , [Properties] , [Mut_Val] ]
 Vac : [ 0,0,0,0,0,0,0,0 ] (global var.vaccine)
 
-Lethal Points:
-% initialize the lethal points of the virus
+    Lethal Points :
+    % initialize the lethal points of the virus
 
-Choose x = randInt ( 1 , 3 )
-Choose x randInt ( 0 , 7 ) to be index non repeating
-Append indexes to Var : Lethal Point Array
+        Choose x = randint ( 1 , 3 )
+        Choose x randint ( 0 , 7 ) to be index non repeating
+        Append indexes to Var : Lethal Point Array
 
-Threatened:
-% indicates whether or not a virus is threatened by vaccine
-Append 0 to Var : Properties Array
+    Properties :
+    % store virus related information
+        index 0:
+            Threatened:
+            % indicates whether or not a virus is threatened by vaccine
+            Append 0 to Var : Properties Array
+
+        index 1:
+            Fitness Value:
+            % store and update the fitness of a virus with each generation
+            Append 0 to Var : Properties Array
+
+        index 2:
+            Virility Value:
+            % store and update the virality of a virus based on mutations
+            Append 0 to Var : Properties Array
+
+
+    Mutation Value :
+    % store virus mutation values
+        % stores the value of a mutation so that it can be reversed
+        index 0->(virus length * virus node length)
+
+        initialize array of 0's size => (virus length * virus node length)
 
 ```
 
@@ -45,7 +66,7 @@ def virus_threat_check (virus):
         check if any match the VACCINE
 
     if lp match vaccine:
-        if the virus was already threated:
+        if the virus was already threatened:
             kill the virus
         otherwise threaten the virus
     otherwise remove / reset threat
@@ -136,13 +157,3 @@ Lavi    : init vacine (x) / threat (x)/ avg LP string (x)
 Cyril   : mutation / set + get helper for LP (x)
 Priyank : init parent selection
 ```
-
-### Mar 23 Virus Rep, Lethal Points
-### Mar 24
-### Mar 25
-### Mar 26
-### Mar 27
-### Mar 28
-### Mar 29
-### Mar 30
-### Mar 31
