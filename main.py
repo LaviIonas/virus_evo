@@ -27,7 +27,7 @@ var.vaccine = initialization.initialize_vaccine()
 
 # FITNESS
 # evaluate fitness of the populations
-fitness.update_fitness(virus_pop)
+# fitness.update_fitness(virus_pop)
 print("Generation: ", gen)
 
 print(virus_pop)
@@ -36,7 +36,7 @@ print(var.vaccine)
 # GENERATIONAL LOOP
 while gen < gen_max:
     # PARENT SELECTION
-    # parent_index = parent_selection.temp(fit_scores, virus_pop)
+    parent_index = parent_selection.temp(fit_scores, virus_pop)
 
     # OFFSPRING
         # RECOMBINATION

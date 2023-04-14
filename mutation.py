@@ -13,7 +13,6 @@ def virus_node_mutation(virus):
         virus[r1][r2] = 1 - virus[r1][r2]
 
         mut_index = r1*var.virus_length + r2
-        print("MUT INDEX", mut_index)
 
         if virus[r1][r2] == 0:
             virus[var.virus_length+2][mut_index] = 0
