@@ -9,13 +9,14 @@ import random
 def initialize_virus_population ():
     virus_pop = []
     for i in range(0, var.virus_pop_size):
-        virus = initialize_virus()
+        id = "R" + str(i+1) + "-"
+        virus = initialize_virus(id)
         virus_pop.append(virus)
 
     return virus_pop
 
 # INITIALIZE A Virus
-def initialize_virus ():
+def initialize_virus (id):
     virus = []
     for i in range(0, var.virus_length):
         virus.append([0]*var.virus_node_length)
@@ -33,8 +34,13 @@ def initialize_virus ():
     virus[var.virus_length+1].append(0)
     # Append Virality Score to Properties
     virus[var.virus_length+1].append(0)
+    # Append Virus Name
+    virus[var.virus_length+1].append(id)
 
+    # Mutation Value Array
     virus.append([0]*var.virus_length*var.virus_node_length)
+
+
 
     return virus
 

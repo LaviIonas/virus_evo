@@ -1,6 +1,6 @@
 # Declare Variables
 
-virus_pop_size = 1 # Number of Virus in Population
+virus_pop_size = 2 # Number of Virus in Population
 virus_length = 8 # Size of the Virus
 virus_node_length = 8 # Size of each Virus Node
 virus_mut_rate = 1 # Rate at which the virus mutates
@@ -16,4 +16,4 @@ vaccine = []
 a,b = -1, 1
 
 # PARENT SELECTION
-mating_pool_size = 4
+tour_size = 2

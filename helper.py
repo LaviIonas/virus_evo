@@ -1,6 +1,7 @@
 # imports
 import global_var as var
 import random
+import treelib
 # helper functions
 
 # calculates the reproduction rate of a virus
@@ -72,6 +73,17 @@ def virus_pop_clean(virus_pop):
         if virus_pop[i] == None:
             print("gottem")
 
+def print_virus_readable(virus_pop):
+    for i in range(0, len(virus_pop)):
+        print("V", virus_pop[i][var.virus_length+1][3], "=> Threat:", virus_pop[i][var.virus_length+1][0], ", Virality:", virus_pop[i][var.virus_length+1][2])
+
+def get_generation_virality_avg(virus_pop):
+    avg = 0
+    for v in virus_pop:
+        avg += v[var.virus_length+1][2]
+
+    return avg / len(virus_pop)
+
 # Set the array value of the vaccine
 def set_vaccine(vaccine):
     var.vaccine = vaccine
@@ -82,3 +94,13 @@ def update_virus_virality(virus):
     for i in mut_val:
         sum += i
     virus[var.virus_length+1][2] = sum
+
+
+# TREE HELPER
+# def init_tree(virus_pop):
+#     tree = Tree()
+#
+#     for v in virus_pop:
+#         tree.create_node()
+#
+#     return tree
