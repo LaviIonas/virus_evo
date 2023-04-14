@@ -1,9 +1,21 @@
-# import
+# import library
+
+# import files
+import random
+from treelib import Tree, Node
+
 import initialization
+import global_var as var
+import helper as help
+import mutation
+import fitness
+import parent_selection
+import natural_selection as ns
+# declerations
 
-# 
-virus_pop_size = 10
-virus_length = 6
+# ---------------
+# Evo Alg
+# ---------------
 
-virus_pop = initialization.initialize_virus_population(virus_length, virus_pop_size)
-print(virus_pop)
+# NATURAL SELECTION APPROACH
+ns.natural_selection()
