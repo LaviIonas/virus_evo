@@ -7,6 +7,7 @@ virus_pop_size = 2 # Number of Virus in Population
 virus_length = 8 # Size of the Virus
 virus_node_length = 8 # Size of each Virus Node
 vaccine = []
+GENERATIONS = 100
 
 #RANDOM
 a,b = -1, 1
