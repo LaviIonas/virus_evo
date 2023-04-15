@@ -23,3 +23,9 @@ tree = Tree()
 # EFFICIENCY VARIABLES
 v_num = virus_pop_size
 v_kill = 0
+
+# HUMAN POP
+human_cluster = 4
+human_pop = 4*human_cluster
+
+human_actions = {'Home': 0.25, 'Public': 0.25, 'Friends': 0.25, 'Family': 0.25}
