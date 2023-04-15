@@ -11,7 +11,7 @@ def natural_selection():
 
     # Set gen start
     gen = 0
-    gen_max = 20
+    gen_max = 10
 
     # INITIALIZE
     virus_pop = initialization.initialize_virus_population()
@@ -29,7 +29,7 @@ def natural_selection():
         gen += 1
 
         # VACCINE
-        if gen > 10:
+        if gen > 5:
             lp_array = []
             for virus in virus_pop:
                 lp_array.append(help.get_virus_lp(virus))
@@ -52,6 +52,7 @@ def natural_selection():
             mutation.natural_selection_mutation(clone)
             help.update_virus_virality(clone)
             virus_pop.append(clone)
+            var.v_num += 1
 
         # MUTATION
         for i in virus_pop:
@@ -60,10 +61,12 @@ def natural_selection():
 
 
         # AVG VIRALITY
-        avg = help.get_generation_virality_avg(virus_pop)
+        # avg = help.get_generation_virality_avg(virus_pop)
 
         # PRINT
-        print("Generation: ", gen, "Avg Virality: ", avg)
+        print(var.v_kill)
+        print(var.v_num)
+        print("Generation: ", gen, "Avg Virality: ", 0, "Vac Eff: ", (var.v_kill/var.v_num))
         help.print_virus_readable(virus_pop)
         var.tree.show()
 
