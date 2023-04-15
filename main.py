@@ -30,14 +30,17 @@ for i in range(global_var.virus_length):
    for j in range(global_var.virus_length):
        virus_pop[i][j] = mutation.virus_mutation(virus_pop[i][j])
 print(virus_pop[0])
+"""
 initialization.MutateLethalPoint(virus_pop[0])
 print(virus_pop[0])
-"""
-Geter, setter
-"""
+
+# Geter, setter
+
 print(helper.LP_get(virus_pop[0]))
 helper.LP_set(virus_pop[0], [1, 2])
 print(helper.LP_get(virus_pop[0]))
+"""
+
 
 # for i in range(len(virus_pop)):
 #     for j in range(len(virus_pop[i])):

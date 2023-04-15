@@ -184,6 +184,12 @@ GENERATIONAL LOOP for n
 Parent Selection
 *implementation*
     TODO
+    
+Crossover
+
+    1. PMX
+    2. Edge Crossover
+    3. Order Crossover
 ```
 
 ```
