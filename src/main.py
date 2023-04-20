@@ -18,4 +18,23 @@ import natural_selection as ns
 # ---------------
 
 # NATURAL SELECTION APPROACH
-ns.natural_selection()
+# ns.natural_selection()
+
+
+# Set gen start
+gen = 0
+gen_max = 5
+
+# INITIALIZE
+virus_pop = initialization.initialize_virus_population()
+var.vaccine = initialization.initialize_vaccine()
+help.init_tree(virus_pop)
+
+# PRINT
+print("Generation ZERO")
+help.print_virus_readable(virus_pop)
+var.tree.show()
+
+# GENERATIONAL LOOP
+while gen < gen_max:
+    gen += 1
