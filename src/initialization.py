@@ -58,3 +58,21 @@ def init_LP ():
         if lethal not in LP:
             LP.append(lethal)
     return LP
+
+def alterLethalPoint(individual):
+    """
+    Re-initialize the LP indices
+    :param binary string virus individual
+    :return: None
+    """
+    individual[var.virus_length] = init_LP()
+
+def MutateLethalPoint(individual):
+    """
+    Re-initialize a single binary string
+    :param binary string virus individual:
+    :return: None
+    """
+    # Find the binary string that represents the LP
+    for p in individual[var.virus_length]:
+        individual[p] = mutation.virus_mutation(individual[p])

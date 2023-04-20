@@ -22,3 +22,6 @@ def natural_selection_mutation(virus):
 
 def natural_selection_virus_lp_muation(virus):
     return 0
+
+def virus_mutation(individual):
+    return random.choices(population=[0, 1], weights=var.mutation_rate, k=len(individual))
