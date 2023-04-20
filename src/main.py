@@ -38,3 +38,10 @@ var.tree.show()
 # GENERATIONAL LOOP
 while gen < gen_max:
     gen += 1
+
+    
+
+    # MUTATION
+    for i in virus_pop:
+        mutation.natural_selection_mutation(i)
+        help.update_virus_virality(i)
