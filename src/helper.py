@@ -44,6 +44,23 @@ def get_virus_lp(virus):
         lp_array.append(virus[lp])
     return lp_array
 
+def LP_get(individual):
+    """
+        Get LP of an individual
+        :param binary string virus individual
+        :return: Its LP list
+        """
+    return individual[var.virus_length]
+
+def LP_set(individual, lp):
+    """
+        Set LP for an individual
+        :param binary string virus individual
+        :return: None
+        """
+    individual[var.virus_length] = lp
+
+
 # Determine Virus Threat Based on Vaccine
 def virus_threat_check(virus):
     virus_lp = get_virus_lp(virus)
