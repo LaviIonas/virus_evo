@@ -11,6 +11,7 @@ import mutation
 import fitness
 import parent_selection as ps
 import natural_selection as ns
+import fitness
 # declerations
 
 # ---------------
@@ -30,11 +31,21 @@ virus_pop = initialization.initialize_virus_population()
 vaccine_pop = initialization.initialize_vaccine_population()
 
 # FITNESS
+vaccine_fitness_array = []
+
+virus_lp_nodes = []
+for virus in virus_pop:
+    virus_lp_nodes.append(help.get_virus_lp(virus))
+
+for vaccine in vaccine_pop:
+    vaccine_fitness_array.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
 
 # PRINT
 help.init_tree(virus_pop)
 print("Generation ZERO")
+# print(vaccine_fitness_array)
 help.print_virus_readable(virus_pop)
+print("VACCINE", vaccine_pop)
 var.tree.show()
 
 # GENERATIONAL LOOP
@@ -46,12 +57,12 @@ while gen < gen_max:
     # VIRUS EVOLUTION
 
     # SELECT PARENTS
-    parents = []
+    virus_p = []
     p1, p2 = ps.select_parents(virus_pop, virus_fitness_list)
-    parents.append(p1)
-    parents.append(p2)
+    virus_p.append(p1)
+    virus_p.append(p2)
 
-    print("PARENTS: ", parents)
+    print("VIRUS PARENTS: ", virus_p)
     # call cross over (parents)
     # GENERATE OFFSPRING
     # ... n = 2
@@ -66,6 +77,10 @@ while gen < gen_max:
     # VACCINE EVOLUTION
 
     # PARENT SELECTION
+    vaccine_p = []
+    p1, p2 = ps.select_parents(vaccine_pop, vaccine_fitness_array)
+    vaccine_p.append(p1)
+    vaccine_p.append(p2)
 
     # OFFSPRING
 
@@ -73,8 +88,7 @@ while gen < gen_max:
     for vaccine in vaccine_pop:
         mutation.vaccine_mutation(vaccine)
 
-    # FITNESS
-
+    print("VACCINE", vaccine_pop)
 
 
     # ...

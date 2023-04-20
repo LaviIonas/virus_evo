@@ -33,7 +33,7 @@ def initialize_virus (id):
     # Append Fitness Score to Properties
     virus[var.virus_length+1].append(0)
     # Append Virality Score to Properties
-    virus[var.virus_length+1].append(-0.001)
+    virus[var.virus_length+1].append(1)
     # Append Virus Name
     virus[var.virus_length+1].append(id)
 
