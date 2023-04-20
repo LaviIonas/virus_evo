@@ -8,7 +8,6 @@ INITIALIZATION
 Virus :
 % initial structure of the virus and vaccine
 
-
 Vir : [ [0,0,0,0,0,0,0,0]x8 , [Lethal Point : index] , [Properties] , [Mut_Val] ]
 Vac : [ 0,0,0,0,0,0,0,0 ] (global var.vaccine)
 

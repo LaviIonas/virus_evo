@@ -44,42 +44,25 @@ def get_virus_lp(virus):
         lp_array.append(virus[lp])
     return lp_array
 
-def LP_get(individual):
-    """
-        Get LP of an individual
-        :param binary string virus individual
-        :return: Its LP list
-        """
-    return individual[var.virus_length]
-
-def LP_set(individual, lp):
-    """
-        Set LP for an individual
-        :param binary string virus individual
-        :return: None
-        """
-    individual[var.virus_length] = lp
-
-
-# Determine Virus Threat Based on Vaccine
-def virus_threat_check(virus):
-    virus_lp = get_virus_lp(virus)
-    threat = False
-    for lp in virus_lp:
-        if lp == var.vaccine:
-            threat = True
-
-    if threat:
-        if get_virus_threat(virus):
-            # Virus is already threathed from a previous iteration
-            print("yeet")
-            virus_null(virus)
-        else:
-            # threaten the virus
-            set_virus_threat(virus, 1)
-    else:
-        # reset threat values
-        set_virus_threat(virus, 0)
+# # Determine Virus Threat Based on Vaccine
+# def virus_threat_check(virus):
+#     virus_lp = get_virus_lp(virus)
+#     threat = False
+#     for lp in virus_lp:
+#         if lp == var.vaccine:
+#             threat = True
+#
+#     if threat:
+#         if get_virus_threat(virus):
+#             # Virus is already threathed from a previous iteration
+#             print("yeet")
+#             virus_null(virus)
+#         else:
+#             # threaten the virus
+#             set_virus_threat(virus, 1)
+#     else:
+#         # reset threat values
+#         set_virus_threat(virus, 0)
 
 # remove a selected virus from the population
 def virus_null(virus):
@@ -102,9 +85,15 @@ def get_generation_virality_avg(virus_pop):
 
     return avg / len(virus_pop)
 
-# Set the array value of the vaccine
-def set_vaccine(vaccine):
-    var.vaccine = vaccine
+def generate_virus_fitness_list(virus_pop):
+    fit_list = []
+    for v in virus_pop:
+        fit_list.append(v[var.virus_length+1][2])
+    return fit_list
+
+# # Set the array value of the vaccine
+# def set_vaccine(vaccine):
+#     var.vaccine = vaccine
 
 def update_virus_virality(virus):
     mut_val = virus[var.virus_length+2]

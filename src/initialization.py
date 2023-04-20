@@ -33,7 +33,7 @@ def initialize_virus (id):
     # Append Fitness Score to Properties
     virus[var.virus_length+1].append(0)
     # Append Virality Score to Properties
-    virus[var.virus_length+1].append(0)
+    virus[var.virus_length+1].append(-0.001)
     # Append Virus Name
     virus[var.virus_length+1].append(id)
 
@@ -42,8 +42,16 @@ def initialize_virus (id):
 
     return virus
 
+# INITIALIZE Vaccine Population
+def initialize_vaccine_population():
+    vaccine_pop = []
+    for i in range(0, var.vaccine_pop_size):
+        vaccine = initialize_vaccine()
+        vaccine_pop.append(vaccine)
+    return vaccine_pop
+
 # INITIALIZE A Vaccine
-def initialize_vaccine ():
+def initialize_vaccine():
     vaccine = []
     for i in range(0, var.virus_length):
         vaccine.append(0)
