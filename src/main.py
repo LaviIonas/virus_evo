@@ -18,4 +18,4 @@ import natural_selection as ns
 # ---------------
 
 # NATURAL SELECTION APPROACH
-ns.natural_selection()
+# ns.natural_selection()
