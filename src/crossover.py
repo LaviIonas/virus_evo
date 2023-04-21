@@ -101,6 +101,33 @@ p2 = [9, 3, 7, 8, 2, 6, 5, 1, 4]
 print(PMX(p1, p2))
 """
 
+def one_point_crossover(p1, p2):
+    # create mappings
+    mapping1 = {index: p1[-1][index] for index in range(var.virus_node_length * var.virus_length)}
+    mapping2 = {index: p2[-1][index] for index in range(var.virus_node_length * var.virus_length)}
+    # create offsprings
+    child1 = p1.copy()
+    child2 = p2.copy()
+
+    # crossover each binary string by one point crossover method
+    for i in range(var.virus_length):
+        # randomly choose a cut point
+        cut_point = random.randint(1, var.virus_node_length - 1)
+        print(cut_point)
+        temp = p1[i]
+        child1[i] = p1[i][:cut_point] + p2[i][cut_point:]
+        child2[i] = p2[i][:cut_point] + temp[cut_point:]
+        print(child1[i])
+        print(child2[i])
+
+        # update the corresponding properties
+        for x in range(cut_point,  var.virus_length):
+            child1[-1][i * var.virus_length + x] = mapping2[i * var.virus_length + x]
+            child2[-1][i * var.virus_length + x] = mapping1[i * var.virus_length + x]
+        print(child1[-1])
+        print(child2[-1])
+        return child1, child2
+
 def order_crossover(p1, p2):
     """
     Parameter: 2 permutations of parents
