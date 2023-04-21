@@ -16,7 +16,7 @@ vaccine = []
 a,b = -1, 1
 
 # MUTATION
-virus_mut_rate = 1 # Rate at which the virus mutates
+virus_mut_rate = 0.01 # Rate at which the virus mutates
 vaccine_mut_rate = 1 #  Rate at which the vaccine mutates
 
 # PARENT SELECTION

@@ -76,7 +76,6 @@ def virus_pop_clean(virus_pop):
             print("killed ", virus_pop[i][var.virus_length+1][3])
             del_index.append(i)
 
-    var.v_kill += len(del_index)
     for index in sorted(del_index, reverse=True):
         del virus_pop[index]
 

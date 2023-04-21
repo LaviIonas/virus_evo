@@ -1,6 +1,7 @@
 import random
 import copy
 from treelib import Tree, Node
+import matplotlib.pyplot as plt
 
 import helper as help
 import global_var as var
@@ -13,6 +14,8 @@ def natural_selection():
     gen = 0
     gen_max = 20
 
+    x_plot = []
+    y_plot = []
 
     # INITIALIZE
     virus_pop = initialization.initialize_virus_population()
@@ -26,20 +29,18 @@ def natural_selection():
 
     # GENERATIONAL LOOP
     while gen < gen_max or len(virus_pop) == 0:
-
-        var.mutation_rate = 0.1
-        if gen < var.x:
-            var.mutation_rate = 1
-
         gen += 1
 
         # VACCINE
-        if gen > 10:
+        if gen > 5:
             lp_array = []
             for virus in virus_pop:
                 lp_array.append(help.get_virus_lp(virus))
             vac = help.avg_lp_virus_string(lp_array)
             help.set_vaccine(vac)
+
+            # Vaccine Mutation
+            mutation.vaccine_mutation(var.vaccine)
             print(var.vaccine)
 
             # VIRUS THREAT
@@ -64,13 +65,23 @@ def natural_selection():
             help.update_virus_virality(i)
 
 
+        #  CLONE WITH HIGHEST
+        
         # AVG VIRALITY
         # avg = help.get_generation_virality_avg(virus_pop)
 
         # PRINT
+
+        x_plot.append(gen)
+        y_plot.append(len(virus_pop))
+        plt.plot(x_plot, y_plot)
+
         print("Generation: ", gen, "Avg Virality: ", 0, "Vac Eff: ")
         help.print_virus_readable(virus_pop)
         var.tree.show()
+
+
+    plt.show()
 
 
 def generate_virus_clones(virus_pop, gen):
@@ -78,29 +89,17 @@ def generate_virus_clones(virus_pop, gen):
     for i in range(0, len(virus_pop)):
         clone = []
         v_rate = virus_pop[i][var.virus_length+1][2]
-        if gen < var.x:
-            if v_rate > 0:
-                # set clone id
-                clone = copy.deepcopy(virus_pop[i])
-                clone[var.virus_length+1][3] += str(gen)+":"
 
-                # Tree Update
-                name = str(clone[var.virus_length+1][3])
-                var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
+        if v_rate > 0:
+            # set clone id
+            clone = copy.deepcopy(virus_pop[i])
+            clone[var.virus_length+1][3] += str(gen)+":"
 
-                # add clone
-                clones.append(clone)
-        else:
-            if v_rate > gen-var.y:
-                # set clone id
-                clone = copy.deepcopy(virus_pop[i])
-                clone[var.virus_length+1][3] += str(gen)+":"
+            # Tree Update
+            name = str(clone[var.virus_length+1][3])
+            var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
 
-                # Tree Update
-                name = str(clone[var.virus_length+1][3])
-                var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
-
-                # add clone
-                clones.append(clone)
+            # add clone
+            clones.append(clone)
 
     return clones
