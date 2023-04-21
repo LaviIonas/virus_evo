@@ -2,6 +2,9 @@ from treelib import Tree, Node
 
 # Declare Variables
 
+x = 5
+y = 5
+
 # INITIALIZATION
 virus_pop_size = 2 # Number of Virus in Population
 vaccine_pop_size = 2

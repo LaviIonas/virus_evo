@@ -13,8 +13,8 @@ def calculate_virus_reproduction_rate (mut_val):
 def avg_lp_virus_string (lethal_points):
     average = []
     for i in range(0, var.virus_length):
-        count_1 = 0
-        count_0 = 0
+        a = 0
+        b = 0
         for j in lethal_points:
             if j[i]:
                 count_1 += 1

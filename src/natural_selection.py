@@ -13,6 +13,7 @@ def natural_selection():
     gen = 0
     gen_max = 20
 
+
     # INITIALIZE
     virus_pop = initialization.initialize_virus_population()
     var.vaccine = initialization.initialize_vaccine()
@@ -25,9 +26,15 @@ def natural_selection():
 
     # GENERATIONAL LOOP
     while gen < gen_max or len(virus_pop) == 0:
+
+        var.mutation_rate = 0.1
+        if gen < var.x:
+            var.mutation_rate = 1
+
         gen += 1
 
         # VACCINE
+        # if gen < y
         if gen > 10:
             lp_array = []
             for virus in virus_pop:
@@ -72,10 +79,20 @@ def generate_virus_clones(virus_pop, gen):
     for i in range(0, len(virus_pop)):
         clone = []
         v_rate = virus_pop[i][var.virus_length+1][2]
-        if gen < 5:
-            
+        if gen < var.x:
+            if v_rate > 0:
+                # set clone id
+                clone = copy.deepcopy(virus_pop[i])
+                clone[var.virus_length+1][3] += str(gen)+":"
+
+                # Tree Update
+                name = str(clone[var.virus_length+1][3])
+                var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
+
+                # add clone
+                clones.append(clone)
         else:
-            if v_rate > gen-2:
+            if v_rate > gen-var.y:
                 # set clone id
                 clone = copy.deepcopy(virus_pop[i])
                 clone[var.virus_length+1][3] += str(gen)+":"
