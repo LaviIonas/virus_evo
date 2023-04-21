@@ -57,7 +57,8 @@ def natural_selection():
         # help.set_vaccine(vac)
 
         # parent
-        p1, p2 = ps.select_parents(vaccine_pop, vaccine_fitness)
+        # p1, p2 = ps.select_parents(vaccine_pop, vaccine_fitness)
+        p1 = ps.selection(vaccine_pop, vaccine_fitness, k=4)
 
         # offspring
         offspring = []
