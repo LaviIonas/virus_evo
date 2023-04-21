@@ -17,6 +17,8 @@ def natural_selection():
     gen = 0
     gen_max = 15
 
+    highest = 0
+
     pop_plot = []
     score_plot = []
     gen_plot = []
@@ -36,11 +38,11 @@ def natural_selection():
     for vaccine in vaccine_pop:
         vaccine_fitness.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
 
-    help.init_tree(virus_pop)
+    # help.init_tree(virus_pop)
     # PRINT
-    print("Generation ZERO")
-    help.print_virus_readable(virus_pop)
-    var.tree.show()
+    # print("Generation ZERO")
+    # help.print_virus_readable(virus_pop)
+    # var.tree.show()
 
     # GENERATIONAL LOOP
     while gen < gen_max or len(virus_pop) == 0:
@@ -63,7 +65,6 @@ def natural_selection():
         offspring.append(o1)
         offspring.append(o2)
 
-        # remove 2
 
         # Vaccine Mutate Child
         for child in offspring:
@@ -78,9 +79,26 @@ def natural_selection():
             for i in lp_index:
                 virus_lp_nodes.append(virus[i])
 
+        score = 0
         for vaccine in vaccine_pop:
-            vaccine_fitness.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
+            score += fitness.vaccine_fitness(virus_lp_nodes, vaccine)
+            vaccine_fitness.append(score)
 
+        # lowest = 1000000
+        # index_a = []
+        # for i in range(1):
+        #     index = 0
+        #     for v in range(0, len(vaccine_fitness)):
+        #         if vaccine_fitness[v] < lowest:
+        #             index = v
+        #             lowest = vaccine_fitness[v]
+        #     index_a.append(index)
+        #
+        # for i in index_a:
+        #     del vaccine_pop[i]
+        #     del vaccine_fitness[i]
+
+        # print(vaccine_fitness)
         # simulate
         highest = 0
         for vaccine in vaccine_pop:
@@ -129,12 +147,16 @@ def natural_selection():
         plt.plot(gen_plot, score_plot)
 
 
-        print("Generation: ", gen, "Avg Virality: ", 0, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
+        # print("Generation: ", gen, "Avg Virality: ", 0, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
         # help.print_virus_readable(virus_pop)
         # var.tree.show()
 
 
-    plt.show()
+
+    l = len(virus_pop)
+    e = highest / l
+    return highest, l, e
+    # plt.show()
 
 
 def generate_virus_clones(virus_pop, gen):
@@ -150,7 +172,7 @@ def generate_virus_clones(virus_pop, gen):
 
             # Tree Update
             name = str(clone[var.virus_length+1][3])
-            var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
+            # var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
 
             # add clone
             clones.append(clone)
@@ -174,7 +196,7 @@ def generate_virus_clones_highest(virus_pop, gen):
         clone[var.virus_length+1][3] += " "+str(gen)+":"+str(i)
 
         name = str(clone[var.virus_length+1][3])
-        var.tree.create_node(name, name, parent=str(top_v[var.virus_length+1][3]))
+        # var.tree.create_node(name, name, parent=str(top_v[var.virus_length+1][3]))
         clones.append(clone)
 
 

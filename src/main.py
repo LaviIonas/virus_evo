@@ -2,7 +2,7 @@
 
 # import files
 import random
-from treelib import Tree, Node
+# from treelib import Tree, Node
 
 import initialization
 import global_var as var
@@ -19,8 +19,14 @@ import fitness
 # ---------------
 
 # NATURAL SELECTION APPROACH
-ns.natural_selection()
+sum = 0
+num = 10
+for i in range(num):
+    h, l, e = ns.natural_selection()
+    sum += e
+    print("Vaccine: ", h, "Pop Num: ", l, "EFF:", e)
 
+print("FINAL AVERAGE: ", sum / num)
 # # Set gen start
 # gen = 0
 # gen_max = 5

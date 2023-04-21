@@ -68,7 +68,7 @@ def initialize_vaccine():
 #INITIALIZE lethal points of a virus
 def init_LP ():
     LP = []
-    numLP = random.randint(1, 3)
+    numLP = 1
     for i in range(numLP):
         lethal = random.randint(0, 7)
         if lethal not in LP:
