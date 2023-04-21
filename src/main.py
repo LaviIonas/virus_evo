@@ -21,7 +21,6 @@ import fitness
 # NATURAL SELECTION APPROACH
 # ns.natural_selection()
 
-
 # Set gen start
 gen = 0
 gen_max = 5
@@ -62,7 +61,8 @@ while gen < gen_max:
     virus_p.append(p1)
     virus_p.append(p2)
 
-    print("VIRUS PARENTS: ", virus_p)
+    help.print_virus_readable(virus_p)
+
     # call cross over (parents)
     # GENERATE OFFSPRING
     # ... n = 2
@@ -88,7 +88,15 @@ while gen < gen_max:
     for vaccine in vaccine_pop:
         mutation.vaccine_mutation(vaccine)
 
-    print("VACCINE", vaccine_pop)
-
+    # vaccine_fitness_array = []
+    #
+    # virus_lp_nodes = []
+    # for virus in virus_pop:
+    #     virus_lp_nodes.append(help.get_virus_lp(virus))
+    #
+    # for vaccine in vaccine_pop:
+    #     vaccine_fitness_array.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
+    #
+    # print(vaccine_fitness_array)
 
     # ...
