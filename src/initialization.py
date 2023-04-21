@@ -2,7 +2,7 @@
 import numpy as np
 import global_var as var
 import random
-
+import mutation
 # functions
 
 # INITIALIZE A Virus Population
@@ -14,6 +14,17 @@ def initialize_virus_population ():
         virus_pop.append(virus)
 
     return virus_pop
+
+def generate_randomly(length):
+    choices = [0,1]
+    return [random.choice(choices) for _ in range(length)]
+
+def intialize_vaccine_population():
+    vaccine_pop = [generate_randomly(8) for _ in range(var.vaccine_pop_size)]
+
+ 
+
+    
 
 # INITIALIZE A Virus
 def initialize_virus (id):
