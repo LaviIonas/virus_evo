@@ -12,7 +12,7 @@ def natural_selection():
 
     # Set gen start
     gen = 0
-    gen_max = 5
+    gen_max = 10
 
     x_plot = []
     y_plot = []
@@ -53,8 +53,8 @@ def natural_selection():
         # virus has virality rate which determines its potency to replicate
         # each virus has viratility rate chance of making a close with a chance for that clone to mutate
 
-        # clones = generate_virus_clones(virus_pop, gen)
-        clones = generate_virus_clones_highest(virus_pop, gen)
+        clones = generate_virus_clones(virus_pop, gen)
+        # clones = generate_virus_clones_highest(virus_pop, gen)
 
         for clone in clones:
             mutation.natural_selection_mutation(clone)
@@ -118,11 +118,11 @@ def generate_virus_clones_highest(virus_pop, gen):
 
     for i in range(0, 2):
         clone = copy.deepcopy(top_v)
-        clone[var.virus_length+1][3] += str(gen)+":"+str(i)
+        clone[var.virus_length+1][3] += " "+str(gen)+":"+str(i)
 
         name = str(clone[var.virus_length+1][3])
         var.tree.create_node(name, name, parent=str(top_v[var.virus_length+1][3]))
-
         clones.append(clone)
+
 
     return clones
