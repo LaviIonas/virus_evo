@@ -19,12 +19,9 @@ def generate_randomly(length):
     choices = [0,1]
     return [random.choice(choices) for _ in range(length)]
 
-def intialize_vaccine_population():
+def initialize_vaccine_population1():
     vaccine_pop = [generate_randomly(8) for _ in range(var.vaccine_pop_size)]
-
- 
-
-    
+    return vaccine_pop
 
 # INITIALIZE A Virus
 def initialize_virus (id):
@@ -54,7 +51,7 @@ def initialize_virus (id):
     return virus
 
 # INITIALIZE Vaccine Population
-def initialize_vaccine_population():
+def initialize_vaccine_population2():
     vaccine_pop = []
     for i in range(0, var.vaccine_pop_size):
         vaccine = initialize_vaccine()

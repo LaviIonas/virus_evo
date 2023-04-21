@@ -7,19 +7,34 @@ import helper as help
 import global_var as var
 import mutation
 import initialization
+import crossover
+import fitness
+import parent_selection as ps
 
 def natural_selection():
 
     # Set gen start
     gen = 0
-    gen_max = 10
+    gen_max = 15
 
-    x_plot = []
-    y_plot = []
+    pop_plot = []
+    score_plot = []
+    gen_plot = []
 
     # INITIALIZE
     virus_pop = initialization.initialize_virus_population()
-    var.vaccine = initialization.initialize_vaccine()
+    vaccine_pop = initialization.initialize_vaccine_population2()
+
+    vaccine_fitness = []
+
+    virus_lp_nodes = []
+    for virus in virus_pop:
+        lp_index = virus[var.virus_length]
+        for i in lp_index:
+            virus_lp_nodes.append(virus[i])
+
+    for vaccine in vaccine_pop:
+        vaccine_fitness.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
 
     help.init_tree(virus_pop)
     # PRINT
@@ -32,22 +47,57 @@ def natural_selection():
         gen += 1
 
         # VACCINE
-        # if gen > 5:
-        #     lp_array = []
-        #     for virus in virus_pop:
-        #         lp_array.append(help.get_virus_lp(virus))
-        #     vac = help.avg_lp_virus_string(lp_array)
-        #     help.set_vaccine(vac)
+
+        # lp_array = []
+        # for virus in virus_pop:
+        #     lp_array.append(help.get_virus_lp(virus))
+        # vac = help.avg_lp_virus_string(lp_array)
+        # help.set_vaccine(vac)
+
+        # parent
+        p1, p2 = ps.select_parents(vaccine_pop, vaccine_fitness)
+
+        # offspring
+        offspring = []
+        o1, o2 = crossover(p1, p2)
+        offspring.append(o1)
+        offspring.append(o2)
+
+        # remove 2
+
+        # Vaccine Mutate Child
+        for child in offspring:
+            mutation.vaccine_mutation(child)
+            vaccine_pop.append(child)
+
+        # calculates fitness
+        vaccine_fitness = []
+        virus_lp_nodes = []
+        for virus in virus_pop:
+            lp_index = virus[var.virus_length]
+            for i in lp_index:
+                virus_lp_nodes.append(virus[i])
+
+        for vaccine in vaccine_pop:
+            vaccine_fitness.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
+
+        # simulate
+        highest = 0
+        for vaccine in vaccine_pop:
+            score = help.sim_vaccine(virus_pop, vaccine)
+            if score > highest:
+                highest = score
+
+
+        score_plot.append(highest)
+
+        # print(vaccine_pop)
+
+        # VIRUS THREAT
+        # for virus in virus_pop:
+        #     help.virus_threat_check(virus_pop, virus)
         #
-        #     # Vaccine Mutation
-        #     mutation.vaccine_mutation(var.vaccine)
-        #     print(var.vaccine)
-        #
-        #     # VIRUS THREAT
-        #     for virus in virus_pop:
-        #         help.virus_threat_check(virus_pop, virus)
-        #
-        #     help.virus_pop_clean(virus_pop)
+        # help.virus_pop_clean(virus_pop)
 
         # VIRUS REPRODUCTION
         # virus has virality rate which determines its potency to replicate
@@ -72,13 +122,16 @@ def natural_selection():
 
         # PRINT
 
-        x_plot.append(gen)
-        y_plot.append(len(virus_pop))
-        plt.plot(x_plot, y_plot)
+        gen_plot.append(gen)
+        pop_plot.append(len(virus_pop))
+        plt.xlabel("gen")
+        plt.plot(gen_plot, pop_plot)
+        plt.plot(gen_plot, score_plot)
 
-        print("Generation: ", gen, "Avg Virality: ", 0, "Vac Eff: ")
-        help.print_virus_readable(virus_pop)
-        var.tree.show()
+
+        print("Generation: ", gen, "Avg Virality: ", 0, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
+        # help.print_virus_readable(virus_pop)
+        # var.tree.show()
 
 
     plt.show()
@@ -126,3 +179,9 @@ def generate_virus_clones_highest(virus_pop, gen):
 
 
     return clones
+
+def crossover(parent1, parent2):
+    crossover_point = random.randint(1, len(parent1) - 1)
+    child1 = parent1[:crossover_point] + parent2[crossover_point:]
+    child2 = parent2[:crossover_point] + parent1[crossover_point:]
+    return child1, child2

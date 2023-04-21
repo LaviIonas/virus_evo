@@ -128,6 +128,7 @@ def one_point_crossover(p1, p2):
         print(child2[-1])
         return child1, child2
 
+
 def order_crossover(p1, p2):
     """
     Parameter: 2 permutations of parents
