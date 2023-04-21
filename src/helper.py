@@ -12,17 +12,16 @@ def calculate_virus_reproduction_rate (mut_val):
 # Find the average virus LP strings of LP array of virus pop
 def avg_lp_virus_string (lethal_points):
     average = []
-    for i in range(0, var.virus_length):
-        a = 0
-        b = 0
-        for j in lethal_points:
+    for i in range(0, var.virus_node_length):
+        a, b = 0, 0
+        for j in lethal_points[0]:
             if j[i]:
-                count_1 += 1
+                a += 1
             else:
-                count_0 += 1
-        if count_1 == count_0:
+                b += 1
+        if a == b:
             average.append(random.randint(0,1))
-        elif count_1 > count_0:
+        elif a > b:
             average.append(1)
         else:
             average.append(0)
@@ -44,25 +43,25 @@ def get_virus_lp(virus):
         lp_array.append(virus[lp])
     return lp_array
 
-# # Determine Virus Threat Based on Vaccine
-# def virus_threat_check(virus):
-#     virus_lp = get_virus_lp(virus)
-#     threat = False
-#     for lp in virus_lp:
-#         if lp == var.vaccine:
-#             threat = True
-#
-#     if threat:
-#         if get_virus_threat(virus):
-#             # Virus is already threathed from a previous iteration
-#             print("yeet")
-#             virus_null(virus)
-#         else:
-#             # threaten the virus
-#             set_virus_threat(virus, 1)
-#     else:
-#         # reset threat values
-#         set_virus_threat(virus, 0)
+# Determine Virus Threat Based on Vaccine
+def virus_threat_check(virus):
+    virus_lp = get_virus_lp(virus)
+    threat = False
+    for lp in virus_lp:
+        if lp == var.vaccine:
+            threat = True
+
+    if threat:
+        if get_virus_threat(virus):
+            # Virus is already threathed from a previous iteration
+            print("yeet")
+            virus_null(virus)
+        else:
+            # threaten the virus
+            set_virus_threat(virus, 1)
+    else:
+        # reset threat values
+        set_virus_threat(virus, 0)
 
 # remove a selected virus from the population
 def virus_null(virus):
@@ -91,9 +90,9 @@ def generate_virus_fitness_list(virus_pop):
         fit_list.append(v[var.virus_length+1][2])
     return fit_list
 
-# # Set the array value of the vaccine
-# def set_vaccine(vaccine):
-#     var.vaccine = vaccine
+# Set the array value of the vaccine
+def set_vaccine(vaccine):
+    var.vaccine = vaccine
 
 def update_virus_virality(virus):
     mut_val = virus[var.virus_length+2]

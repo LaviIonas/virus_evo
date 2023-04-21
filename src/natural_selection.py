@@ -34,7 +34,6 @@ def natural_selection():
         gen += 1
 
         # VACCINE
-        # if gen < y
         if gen > 10:
             lp_array = []
             for virus in virus_pop:
