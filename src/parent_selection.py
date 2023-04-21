@@ -14,8 +14,7 @@ def selection(pop, scores, k=4):
  # first random selection
  selection_ix = randint(len(pop))
  for ix in randint(0, len(pop), k-1):
-
- # check if better (e.g. perform a tournament)
-   if scores[ix] < scores[selection_ix]:
-   selection_ix = ix
+     # check if better (e.g. perform a tournament)
+     if scores[ix] < scores[selection_ix]:
+     selection_ix = ix
  return pop[selection_ix]
