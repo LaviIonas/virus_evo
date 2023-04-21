@@ -12,7 +12,7 @@ def natural_selection():
 
     # Set gen start
     gen = 0
-    gen_max = 20
+    gen_max = 5
 
     x_plot = []
     y_plot = []
@@ -32,27 +32,29 @@ def natural_selection():
         gen += 1
 
         # VACCINE
-        if gen > 5:
-            lp_array = []
-            for virus in virus_pop:
-                lp_array.append(help.get_virus_lp(virus))
-            vac = help.avg_lp_virus_string(lp_array)
-            help.set_vaccine(vac)
-
-            # Vaccine Mutation
-            mutation.vaccine_mutation(var.vaccine)
-            print(var.vaccine)
-
-            # VIRUS THREAT
-            for virus in virus_pop:
-                help.virus_threat_check(virus_pop, virus)
-
-            help.virus_pop_clean(virus_pop)
+        # if gen > 5:
+        #     lp_array = []
+        #     for virus in virus_pop:
+        #         lp_array.append(help.get_virus_lp(virus))
+        #     vac = help.avg_lp_virus_string(lp_array)
+        #     help.set_vaccine(vac)
+        #
+        #     # Vaccine Mutation
+        #     mutation.vaccine_mutation(var.vaccine)
+        #     print(var.vaccine)
+        #
+        #     # VIRUS THREAT
+        #     for virus in virus_pop:
+        #         help.virus_threat_check(virus_pop, virus)
+        #
+        #     help.virus_pop_clean(virus_pop)
 
         # VIRUS REPRODUCTION
         # virus has virality rate which determines its potency to replicate
         # each virus has viratility rate chance of making a close with a chance for that clone to mutate
-        clones = generate_virus_clones(virus_pop, gen)
+
+        # clones = generate_virus_clones(virus_pop, gen)
+        clones = generate_virus_clones_highest(virus_pop, gen)
 
         for clone in clones:
             mutation.natural_selection_mutation(clone)
@@ -65,8 +67,6 @@ def natural_selection():
             help.update_virus_virality(i)
 
 
-        #  CLONE WITH HIGHEST
-        
         # AVG VIRALITY
         # avg = help.get_generation_virality_avg(virus_pop)
 
@@ -101,5 +101,28 @@ def generate_virus_clones(virus_pop, gen):
 
             # add clone
             clones.append(clone)
+
+    return clones
+
+def generate_virus_clones_highest(virus_pop, gen):
+
+    # determine the highest virus
+    top_v = []
+    highest = 0
+    for virus in virus_pop:
+        val = virus[var.virus_length+1][2]
+        if val >= highest:
+            top_v = virus
+
+    clones = []
+
+    for i in range(0, 2):
+        clone = copy.deepcopy(top_v)
+        clone[var.virus_length+1][3] += str(gen)+":"+str(i)
+
+        name = str(clone[var.virus_length+1][3])
+        var.tree.create_node(name, name, parent=str(top_v[var.virus_length+1][3]))
+
+        clones.append(clone)
 
     return clones
