@@ -62,6 +62,7 @@ def natural_selection():
 
         # parent
         p1, p2 = ps.select_parents(vaccine_pop, vaccine_fitness)
+        print(p1, p2)
         # p1 = ps.selection(vaccine_pop, vaccine_fitness, k=4)
 
         # offspring
@@ -130,14 +131,6 @@ def natural_selection():
 
         # print(vaccine_fitness)
         # simulate
-        highest = 0
-        for vaccine in vaccine_pop:
-            score = help.sim_vaccine(virus_pop, vaccine)
-            if score > highest:
-                highest = score
-
-
-        score_plot.append(highest)
 
         # print(vaccine_pop)
 
@@ -177,6 +170,14 @@ def natural_selection():
 
         # PRINT
 
+        highest = 0
+        for vaccine in vaccine_pop:
+            score = help.sim_vaccine(virus_pop, vaccine)
+            if score > highest:
+                highest = score
+
+
+        score_plot.append(highest)
         gen_plot.append(gen)
         pop_plot.append(len(virus_pop))
         plt.xlabel("gen")
@@ -184,9 +185,9 @@ def natural_selection():
         plt.plot(gen_plot, score_plot)
 
 
-        print("Generation: ", gen, "Avg Virality: ", 0, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
-        help.print_virus_readable(virus_pop)
-        var.tree.show()
+        print("Generation: ", gen, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
+        # help.print_virus_readable(virus_pop)
+        # var.tree.show()
 
 
 
@@ -209,13 +210,14 @@ def generate_virus_clones(virus_pop, gen, z):
             # set clone id
             for j in range(random.randint(0,lp_num)):
                 clone = copy.deepcopy(virus_pop[i])
-                clone[var.virus_length+1][3] += str(gen)+":"+str(j)
+                clone[var.virus_length+1][3] += "-"+str(gen)+":"+str(j)
                 clones.append(clone)
 
                 name = str(clone[var.virus_length+1][3])
                 var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
 
-            help.set_virus_threat(virus_pop[i], 1)
+                help.set_virus_threat(virus_pop[i], 1)
+
             # Tree Update
 
             # add clone
