@@ -186,7 +186,7 @@ def natural_selection():
 
 
         print("Generation: ", gen, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
-        help.print_virus_readable(virus_pop)
+        # help.print_virus_readable(virus_pop)
         # var.tree.show()
 
 
