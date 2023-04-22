@@ -6,8 +6,8 @@ x = 5
 y = 5
 
 # INITIALIZATION
-virus_pop_size = 5 # Number of Virus in Population
-vaccine_pop_size = 5
+virus_pop_size = 15 # Number of Virus in Population
+vaccine_pop_size = 25
 virus_length = 8 # Size of the Virus
 virus_node_length = 8 # Size of each Virus Node
 vaccine = []
@@ -17,6 +17,7 @@ a,b = -1, 1
 
 # MUTATION
 virus_mut_rate = 0.05 # Rate at which the virus mutates
+virus_lp_rate = 0.05 # Rate at which the virus mutates
 vaccine_mut_rate = 1 #  Rate at which the vaccine mutates
 
 # PARENT SELECTION

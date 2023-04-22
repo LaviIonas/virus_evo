@@ -2,6 +2,7 @@
 import random
 import numpy as np
 import global_var as var
+import initialization
 
 # NATURAL SELECTION IMPLEMENTATION
 def natural_selection_mutation(virus):
@@ -39,8 +40,10 @@ def vaccine_mutation(vaccine):
         r1 = random.randint(0, var.virus_length-1)
         vaccine[r1] = 1 - vaccine[r1]
 
-def natural_selection_virus_lp_muation(virus):
-    return 0
+def virus_lp_mutation(virus):
+    if random.random() < var.virus_lp_rate:
+        virus[var.virus_length] = initialization.init_LP()
+
 
 # def virus_mutation(individual):
 #     return random.choices(population=[0, 1], weights=var.mutation_rate, k=len(individual))

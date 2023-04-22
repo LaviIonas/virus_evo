@@ -31,15 +31,14 @@ def avg_lp_virus_string (lethal_points):
 def sim_vaccine(virus_pop, vaccine):
     score = 0
 
-    lp = []
     for virus in virus_pop:
         lp_index = virus[var.virus_length]
-        for i in lp_index:
-            lp.append(virus[i])
-
-    for p in lp:
-        if p == vaccine:
-            score +=1
+        match = False
+        for lp in lp_index:
+            if vaccine == virus[lp]:
+                match = True
+        if match:
+            score += 1
 
     return score
 
@@ -84,15 +83,16 @@ def virus_threat_check(virus_pop, virus):
         set_virus_threat(virus, 0)
 
 # remove all empty lists from virus pop
-# def virus_pop_clean(virus_pop):
-#     del_index = []
-#     for i in range(0, len(virus_pop)):
-#         if virus_pop[i][var.virus_length+1][0] == -1:
-#             print("killed ", virus_pop[i][var.virus_length+1][3])
-#             del_index.append(i)
-#
-#     for index in sorted(del_index, reverse=True):
-#         del virus_pop[index]
+def virus_pop_clean(virus_pop):
+    del_index = []
+    for i in range(0, len(virus_pop)):
+        if virus_pop[i][var.virus_length+1][0] == 1:
+            current_id = str(virus_pop[i][var.virus_length+1][3])
+            var.tree.link_past_node(current_id)
+            del_index.append(i)
+
+    for index in sorted(del_index, reverse=True):
+        del virus_pop[index]
 
 def print_virus_readable(virus_pop):
     for i in range(0, len(virus_pop)):

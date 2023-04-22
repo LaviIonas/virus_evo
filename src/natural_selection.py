@@ -18,6 +18,7 @@ def natural_selection():
     gen_max = 15
 
     highest = 0
+    z = 0
 
     pop_plot = []
     score_plot = []
@@ -27,6 +28,7 @@ def natural_selection():
     virus_pop = initialization.initialize_virus_population()
     vaccine_pop = initialization.initialize_vaccine_population2()
 
+    # virus_fitness = []
     vaccine_fitness = []
 
     virus_lp_nodes = []
@@ -38,11 +40,13 @@ def natural_selection():
     for vaccine in vaccine_pop:
         vaccine_fitness.append(fitness.vaccine_fitness(virus_lp_nodes, vaccine))
 
-    # help.init_tree(virus_pop)
+    # for lp in virus_lp_nodes:
+    #     virus_fitness.append(fitness.virus_fitness(lp))
+    help.init_tree(virus_pop)
     # PRINT
-    # print("Generation ZERO")
-    # help.print_virus_readable(virus_pop)
-    # var.tree.show()
+    print("Generation ZERO")
+    help.print_virus_readable(virus_pop)
+    var.tree.show()
 
     # GENERATIONAL LOOP
     while gen < gen_max or len(virus_pop) == 0:
@@ -66,6 +70,15 @@ def natural_selection():
         offspring.append(o1)
         offspring.append(o2)
 
+        # c = []
+        # clone1 = copy.deepcopy(p1)
+        # clone2 = copy.deepcopy(p2)
+        # c.append(clone1)
+        # c.append(clone2)
+        #
+        # for i in c:
+        #     mutation.vaccine_mutation(i)
+        #     vaccine_pop.append(i)
 
         # Vaccine Mutate Child
         for child in offspring:
@@ -73,18 +86,34 @@ def natural_selection():
             vaccine_pop.append(child)
 
         # calculates fitness
-        vaccine_fitness = []
-        virus_lp_nodes = []
+        vaccine_fitness = [0]*len(vaccine_pop)
+        array = []
+
         for virus in virus_pop:
             lp_index = virus[var.virus_length]
-            for i in lp_index:
-                virus_lp_nodes.append(virus[i])
+            for i in range(0, len(vaccine_pop)):
+                match = False
+                for lp in lp_index:
+                    if vaccine_pop[i] == virus[lp]:
+                        match = True
+                if match:
+                    vaccine_fitness[i] += 1
+                else:
+                    vaccine_fitness[i] += 0.001
 
-        score = 0
-        for vaccine in vaccine_pop:
-            score += fitness.vaccine_fitness(virus_lp_nodes, vaccine)
-            vaccine_fitness.append(score)
+        # virus_lp_nodes = []
+        # for virus in virus_pop:
+        #     lp_index = virus[var.virus_length]
+        #     for i in lp_index:
+        #         virus_lp_nodes.append(virus[i])
+        #
+        # score = 0
+        # for vaccine in vaccine_pop:
+        #     score += fitness.vaccine_fitness(virus_lp_nodes, vaccine)
+        #     vaccine_fitness.append(score)
 
+        # for lp in virus_lp_nodes:
+        #     virus_fitness.append(fitness.virus_fitness(lp))
         # lowest = 1000000
         # index_a = []
         # for i in range(1):
@@ -121,18 +150,25 @@ def natural_selection():
         # VIRUS REPRODUCTION
         # virus has virality rate which determines its potency to replicate
         # each virus has viratility rate chance of making a close with a chance for that clone to mutate
+        z = 0
+        # print(z)
+        clones = generate_virus_clones(virus_pop, gen, z)
+        help.virus_pop_clean(virus_pop)
 
-        clones = generate_virus_clones(virus_pop, gen)
+        # print(clones)
+
         # clones = generate_virus_clones_highest(virus_pop, gen)
 
         for clone in clones:
             mutation.natural_selection_mutation(clone)
+            mutation.virus_lp_mutation(clone)
             help.update_virus_virality(clone)
             virus_pop.append(clone)
 
         # MUTATION
         for i in virus_pop:
             mutation.natural_selection_mutation(i)
+            mutation.virus_lp_mutation(i)
             help.update_virus_virality(i)
 
 
@@ -148,35 +184,52 @@ def natural_selection():
         plt.plot(gen_plot, score_plot)
 
 
-        # print("Generation: ", gen, "Avg Virality: ", 0, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
-        # help.print_virus_readable(virus_pop)
-        # var.tree.show()
+        print("Generation: ", gen, "Avg Virality: ", 0, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
+        help.print_virus_readable(virus_pop)
+        var.tree.show()
 
 
 
     l = len(virus_pop)
     e = highest / l
-    return highest, l, e
-    # plt.show()
+    print("EFF", e, "POP", l)
+    # return highest, l, e
+    plt.show()
 
 
-def generate_virus_clones(virus_pop, gen):
+def generate_virus_clones(virus_pop, gen, z):
+
     clones = []
     for i in range(0, len(virus_pop)):
         clone = []
         v_rate = virus_pop[i][var.virus_length+1][2]
+        lp_num = len(virus_pop[i][var.virus_length])
 
         if v_rate > 0:
             # set clone id
-            clone = copy.deepcopy(virus_pop[i])
-            clone[var.virus_length+1][3] += str(gen)+":"
+            for j in range(random.randint(0,lp_num)):
+                clone = copy.deepcopy(virus_pop[i])
+                clone[var.virus_length+1][3] += str(gen)+":"+str(j)
+                clones.append(clone)
 
+                name = str(clone[var.virus_length+1][3])
+                var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
+
+            help.set_virus_threat(virus_pop[i], 1)
             # Tree Update
-            name = str(clone[var.virus_length+1][3])
-            # var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
 
             # add clone
-            clones.append(clone)
+
+        # if v_rate > z:
+        #     for j in range(0,2):
+        #         clone = copy.deepcopy(virus_pop[i])
+        #         clone[var.virus_length+1][3] += str(gen)+"-"+str(j)+":"
+        #         clones.append(clone)
+        #         # Tree Update
+        #         name = str(clone[var.virus_length+1][3])
+        #         # var.tree.create_node(name, name, parent=str(virus_pop[i][var.virus_length+1][3]))
+        #
+        #     help.set_virus_threat(virus_pop[i], 1)
 
     return clones
 
