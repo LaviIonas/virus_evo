@@ -26,7 +26,7 @@ def natural_selection():
 
     # INITIALIZE
     virus_pop = initialization.initialize_virus_population()
-    vaccine_pop = initialization.initialize_vaccine_population2()
+    vaccine_pop = initialization.initialize_vaccine_population1()
 
     # virus_fitness = []
     vaccine_fitness = []
