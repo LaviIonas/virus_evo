@@ -108,4 +108,8 @@ while gen < gen_max or len(virus_pop) == 0:
     print("Generation: ", gen, "Vac Score: ", highest, "Population: ", len(virus_pop), "eff:", highest/len(virus_pop))
     help.print_virus_readable(virus_pop)
 
+l = len(virus_pop)
+e = highest / l
+print("EFF", e, "POP", l)
+
 plt.show()
