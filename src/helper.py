@@ -39,7 +39,7 @@ def virus_pop_clean(virus_pop):
 
 def print_virus_readable(virus_pop):
     for i in range(0, len(virus_pop)):
-        print("V", virus_pop[i][var.virus_length+1][3], "=> Threat:", virus_pop[i][var.virus_length+1][0], ", Virality:", virus_pop[i][var.virus_length+1][2])
+        print("V", virus_pop[i][var.virus_length+1][3], ", Reproduction Rate:", virus_pop[i][var.virus_length+1][2])
 
 def update_virus_virality(virus):
     mut_val = virus[var.virus_length+2]
