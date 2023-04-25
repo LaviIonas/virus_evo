@@ -15,14 +15,6 @@ def initialize_virus_population ():
 
     return virus_pop
 
-def generate_randomly(length):
-    choices = [0,1]
-    return [random.choice(choices) for _ in range(length)]
-
-def initialize_vaccine_population1():
-    vaccine_pop = [generate_randomly(8) for _ in range(var.vaccine_pop_size)]
-    return vaccine_pop
-
 # INITIALIZE A Virus
 def initialize_virus (id):
     virus = []
@@ -50,20 +42,14 @@ def initialize_virus (id):
 
     return virus
 
-# INITIALIZE Vaccine Population
-def initialize_vaccine_population2():
-    vaccine_pop = []
-    for i in range(0, var.vaccine_pop_size):
-        vaccine = initialize_vaccine()
-        vaccine_pop.append(vaccine)
-    return vaccine_pop
+def generate_randomly(length):
+    choices = [0,1]
+    return [random.choice(choices) for _ in range(length)]
 
-# INITIALIZE A Vaccine
-def initialize_vaccine():
-    vaccine = []
-    for i in range(0, var.virus_length):
-        vaccine.append(0)
-    return vaccine
+def initialize_vaccine_population():
+    vaccine_pop = [generate_randomly(8) for _ in range(var.vaccine_pop_size)]
+    return vaccine_pop
+    
 
 #INITIALIZE lethal points of a virus
 def init_LP ():
@@ -74,21 +60,3 @@ def init_LP ():
         if lethal not in LP:
             LP.append(lethal)
     return LP
-
-def alterLethalPoint(individual):
-    """
-    Re-initialize the LP indices
-    :param binary string virus individual
-    :return: None
-    """
-    individual[var.virus_length] = init_LP()
-
-def MutateLethalPoint(individual):
-    """
-    Re-initialize a single binary string
-    :param binary string virus individual:
-    :return: None
-    """
-    # Find the binary string that represents the LP
-    for p in individual[var.virus_length]:
-        individual[p] = mutation.virus_mutation(individual[p])
