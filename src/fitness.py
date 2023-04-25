@@ -1,6 +1,13 @@
-def evaluate_fitness(virus, vaccine):
-    score = 0
-    for i in range(len(virus)):
-        if virus[i] == vaccine[i]:
-            score += 1
-    return score / len(virus)
+import global_var as var
+import helper as hp
+
+def vaccine_fitness(lp, vaccine):
+    score=0
+    for p in lp:
+        for i in range(0, var.virus_node_length-1):
+            if p[i] == vaccine[i]:
+                score += 1
+
+    if score == 0:
+        return 1
+    return score

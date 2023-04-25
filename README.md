@@ -1,6 +1,18 @@
 # **virus_evo**
 
 ### *Current Representations :*
+```
+TO RUN:
+go to ./src and type python3 main.py to see the output
+
+The values of the virus and vaccine are random.
+Sometimes the entire population just dies of right in the beginning.
+Sometimes the vaccine fails.
+
+For full effect run it 5-10 times to see varying results each time.
+On average, it function
+```
+
 
 ```
 INITIALIZATION

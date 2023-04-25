@@ -2,7 +2,7 @@
 import numpy as np
 import global_var as var
 import random
-
+import mutation
 # functions
 
 # INITIALIZE A Virus Population
@@ -33,7 +33,7 @@ def initialize_virus (id):
     # Append Fitness Score to Properties
     virus[var.virus_length+1].append(0)
     # Append Virality Score to Properties
-    virus[var.virus_length+1].append(0)
+    virus[var.virus_length+1].append(1)
     # Append Virus Name
     virus[var.virus_length+1].append(id)
 
@@ -42,37 +42,21 @@ def initialize_virus (id):
 
     return virus
 
-# INITIALIZE A Vaccine
-def initialize_vaccine ():
-    vaccine = []
-    for i in range(0, var.virus_length):
-        vaccine.append(0)
-    return vaccine
+def generate_randomly(length):
+    choices = [0,1]
+    return [random.choice(choices) for _ in range(length)]
+
+def initialize_vaccine_population():
+    vaccine_pop = [generate_randomly(8) for _ in range(var.vaccine_pop_size)]
+    return vaccine_pop
+    
 
 #INITIALIZE lethal points of a virus
 def init_LP ():
     LP = []
-    numLP = random.randint(1, 3)
-    for i in range(numLP):
-        lethal = random.randint(0, 7)
+    numLP = 3
+    for i in range(random.randint(1, numLP+1)):
+        lethal = random.randint(0, var.virus_length-1)
         if lethal not in LP:
             LP.append(lethal)
     return LP
-
-def alterLethalPoint(individual):
-    """
-    Re-initialize the LP indices
-    :param binary string virus individual
-    :return: None
-    """
-    individual[var.virus_length] = init_LP()
-
-def MutateLethalPoint(individual):
-    """
-    Re-initialize a single binary string
-    :param binary string virus individual:
-    :return: None
-    """
-    # Find the binary string that represents the LP
-    for p in individual[var.virus_length]:
-        individual[p] = mutation.virus_mutation(individual[p])
